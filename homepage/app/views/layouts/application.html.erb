@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homepage</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  
+      <div id="global-header">
+    <div class="container">
+      <div class="logo">My Profile</div>
+      <ul class="menu">
+        <a href="/">
+          <li class="item">Hello World</li>
+        </a>
+        <a href="/contacts/new">
+          <li class="item">Contact</li>
+          
+       <% if user_signed_in? %>
+      <li><%= current_user.name %></li>
+      <li><%= link_to 'Sign out', session_path(current_user), method: 'delete' %></li>
+      <% if current_user.admin %>
+      <li>관리자입니다.</li>
+      <li class="item"><%= link_to 'Contacts List', contacts_path %></li>
+      <% end %>
+      <% else %>
+      <li><%= link_to 'Sign in', new_session_path %></li>
+      <li><%= link_to 'Sign up', new_user_path %></li>
+      <% end %>
+        </a>
+      </ul>
+    </div>
+  </div>
+  
+  <body>
+    <div id="wrapper">
+    <%= yield %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+<h1>All Contacts</h1>
+<ul>
+    <% @all_contacts.each do |contact|%>
+    <li>이름 : <%= contact.name%> <br>
+    내용 : <%= contact.content %></li>
+    <% end%>
+</ul>
